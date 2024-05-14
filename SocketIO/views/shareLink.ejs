@@ -1,0 +1,43 @@
+<%- include('layouts/header.ejs') %>
+
+    <div class="container">
+        <div>
+            <img src="/<%=group.image %>" alt="" width="200px" height="200px">
+            <p><b><%= group.name %></b></p>
+ 
+            <p><b>Total members:-</b><%= totalMember %></p>
+
+            <%
+                if(available != 0){
+                    %>
+                        <p>Available for <b><%= available %></b>Members only</p>
+                    <%
+                } 
+
+                 if(isOwner){
+                    %>
+                        <p>You are the creater of this group so can't join it.</p>
+                    <%
+                }
+
+                else if(isJoined >0){
+                    %>
+                        <p>You already joined this group so you, can't join again!</p>
+                    <%
+                }
+                else if(available == 0){
+                    %>
+                    <p>sorry, the group is already full</p>
+                <%
+                }
+                else {
+                    %>
+                    <button class="btn btn-primary join-now" data-id="><%= group._id %>" >Join</button>
+                <%
+                }
+
+            %>
+        </div>
+    </div>
+
+<%- include('layouts/footer.ejs') %>

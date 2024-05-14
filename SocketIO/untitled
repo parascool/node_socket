@@ -1,0 +1,20 @@
+ <input type="checkbox" `+(isMemberOfGroup?'checked':'')+` name="members[]" value="` + users[i]['_id']+`"/>
+
+
+
+
+
+ $('#message').val('');
+ let chat =  response.data.message;
+ let html = `
+           <div class="current-user-chat" id='`+response.data._id+`'>
+              <h5><span>`+chat+`</span>
+               <i class="fa fa-trash" aria-hidden="true" data-id='`+response.data._id+`' data-toggle="modal" data-target="#deleteChatModal"></i> 
+               <i class="fa fa-edit" aria-hidden="true" data-id='`+response.data._id+`' data-msg='`+chat+`'
+               data-toggle="modal" data-target="#editChatModal"></i> 
+              </h5>
+           </div>
+            `
+
+ $('#chat-container').append(html);
+ socket.emit('newChat', response.data)
